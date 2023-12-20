@@ -89,7 +89,7 @@ CREATE TABLE user (
     userid INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     email VARCHAR(30) NOT NULL,
-    password VARCHAR, -- Add a comma here
+    password VARCHAR, 
     age INT NOT NULL,
     batchId VARCHAR(11) NOT NULL,
     CONSTRAINT uc_user_email UNIQUE (email)
@@ -97,7 +97,7 @@ CREATE TABLE user (
 
 CREATE TABLE Batchchange (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    userId INT, -- Specify the datatype for userId
+    userId INT,
     batchChangeRequestTo VARCHAR(11),
     FOREIGN KEY (userId) REFERENCES user(userid)
 );
