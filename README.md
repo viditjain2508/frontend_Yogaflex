@@ -49,3 +49,78 @@ These implementations ensure a smooth and efficient operation of YogaFlex, provi
 ![Database Schema](https://github.com/viditjain2508/frontend_Yogaflex/assets/86849539/2de46581-da0c-4479-b491-686290b84ffe)
 
 There are three tables in the database - user, batchChange, payments. 'user' stores user details, 'batchChange' stores batch change requests by users, and 'payments' stores the payment status of users.
+
+## Getting Started
+
+### 1. Clone Repositories
+
+- Clone the frontend repository:
+  ```bash
+  git clone https://github.com/viditjain2508/frontend_Yogaflex.git
+  ```
+
+- Clone the backend repository:
+  ```bash
+  git clone https://github.com/viditjain2508/backend.git
+  ```
+
+### 2. Install Dependencies
+
+#### Backend Dependencies
+Navigate to the `backend` folder and install the necessary dependencies:
+```bash
+cd backend
+npm install cors express mysql node-cron nodemon
+```
+
+#### Frontend Dependencies
+Navigate to the `frontend` folder and install the required dependencies:
+```bash
+cd frontend
+npm install @testing-library/jest-dom @testing-library/react @testing-library/user-event react react-dom react-router-dom react-scripts web-vitals
+```
+
+### 3. Setup Database
+
+- Open MySQL Workbench and run the following commands to create the necessary tables for Yogaflex. Ensure to change the hostname and port number as per your setup.
+
+```sql
+CREATE TABLE user (
+    userid INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    password VARCHAR, -- Add a comma here
+    age INT NOT NULL,
+    batchId VARCHAR(11) NOT NULL,
+    CONSTRAINT uc_user_email UNIQUE (email)
+);
+
+CREATE TABLE Batchchange (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    userId INT, -- Specify the datatype for userId
+    batchChangeRequestTo VARCHAR(11),
+    FOREIGN KEY (userId) REFERENCES user(userid)
+);
+
+CREATE TABLE Payments (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    userid INT NOT NULL,
+    paymentstatus TINYINT,
+    FOREIGN KEY (userid) REFERENCES user(userid)
+);
+```
+
+### 4. Run the Application
+
+- Open a terminal in the `backend` folder and run:
+  ```bash
+  npm start
+  ```
+
+- Open another terminal in the `frontend` folder and run:
+  ```bash
+  npm start
+  ```
+
+Now, the Yogaflex application is up and running. Access it through your browser and enjoy! 🧘‍♀
+
